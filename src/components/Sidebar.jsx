@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 const Sidebar = ({ isOpen, onClose }) => {
   const [mediaOpen, setMediaOpen] = useState(true);
+  const [hasUpdate, setHasUpdate] = useState(false);
 
   return (
     <>
@@ -23,23 +24,31 @@ const Sidebar = ({ isOpen, onClose }) => {
 
         <div className="sidebar-header" style={{ paddingTop: '8px', borderBottom: 'none' }}>
           <div className="logo-row">
-            <div className="logo-icon">
-              <svg viewBox="0 0 24 24" width="18" height="18" stroke="white" strokeWidth="2" fill="none"><circle cx="12" cy="12" r="3"/><circle cx="5" cy="5" r="2"/><circle cx="19" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><line x1="6.5" y1="6.5" x2="10" y2="10"/><line x1="17.5" y1="6.5" x2="14" y2="10"/><line x1="6.5" y1="17.5" x2="10" y2="14"/><line x1="17.5" y1="17.5" x2="14" y2="14"/></svg>
+            <div className="logo-icon" style={{ backgroundColor: 'var(--accent-color)' }}>
+              <svg viewBox="0 0 24 24" width="16" height="16" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none">
+                <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/>
+                <polyline points="2 8.5 12 15.5 22 8.5"/>
+                <polyline points="12 22 12 15.5"/>
+              </svg>
             </div>
             <div>
-              <div className="product-name">9Router Proxy</div>
-              <div className="product-version">v0.5.30</div>
+              <div className="product-name">AI Provider Gateway</div>
+              <div className="product-version">v1.0.0-beta</div>
             </div>
           </div>
-          <div style={{ color: '#10b981', fontSize: '11px', fontWeight: '600', marginTop: '8px', marginBottom: '4px' }}>
-            ↑ New version available: v0.5.75
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <button style={{ backgroundColor: '#10b981', color: 'white', border: 'none', padding: '4px 8px', borderRadius: '4px', fontSize: '11px', fontWeight: '600', cursor: 'pointer' }}>
-              Update now
-            </button>
-            <span style={{ fontSize: '9px', color: '#10b981', fontFamily: 'monospace' }}>npm i -g 9router@latest --...</span>
-          </div>
+          {hasUpdate && (
+            <>
+              <div style={{ color: '#10b981', fontSize: '11px', fontWeight: '600', marginTop: '8px', marginBottom: '4px' }}>
+                ↑ New version available: v1.0.1
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <button style={{ backgroundColor: '#10b981', color: 'white', border: 'none', padding: '4px 8px', borderRadius: '4px', fontSize: '11px', fontWeight: '600', cursor: 'pointer' }}>
+                  Update now
+                </button>
+                <span style={{ fontSize: '9px', color: '#10b981', fontFamily: 'monospace' }}>npm i -g aigateway@la...</span>
+              </div>
+            </>
+          )}
         </div>
         
         <div className="nav-section">

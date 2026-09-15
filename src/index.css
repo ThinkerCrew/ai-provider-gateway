@@ -79,6 +79,7 @@ body {
   flex-shrink: 0;
   z-index: 10;
   transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-y: auto;
 }
 
 .sidebar.closed {
@@ -209,12 +210,12 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--spacing-md) 0;
-  margin-bottom: var(--spacing-md);
-  background-color: rgba(253, 250, 246, 0.9);
+  padding: var(--spacing-md) var(--spacing-xl);
+  margin: 0 calc(-1 * var(--spacing-xl)) var(--spacing-md) calc(-1 * var(--spacing-xl));
+  background-color: var(--bg-main);
   position: sticky;
   top: 0;
-  z-index: 5;
+  z-index: 15;
   border-bottom: 1px solid var(--border-color);
 }
 
@@ -244,6 +245,7 @@ body {
 .search-input-wrapper {
   position: relative;
   width: 250px;
+  max-width: 100%;
 }
 
 .search-input {
@@ -344,7 +346,11 @@ body {
 }
 
 @media (max-width: 1300px) { .provider-grid { grid-template-columns: repeat(3, 1fr); } }
-@media (max-width: 950px) { .provider-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 950px) { 
+  .provider-grid { grid-template-columns: repeat(2, 1fr); } 
+  .search-input-wrapper { width: 180px; }
+  .btn-donate { display: none; }
+}
 @media (max-width: 650px) { 
   .provider-grid { grid-template-columns: 1fr; }
   .sidebar { 
@@ -357,6 +363,24 @@ body {
   }
   .sidebar.open { left: 0; }
   .sidebar-overlay.open { display: block !important; }
+  
+  /* Header adjustments for mobile */
+  .top-header { 
+    flex-direction: column; 
+    align-items: flex-start; 
+    gap: var(--spacing-md); 
+    padding: var(--spacing-md);
+    margin: 0 calc(-1 * var(--spacing-md)) var(--spacing-md) calc(-1 * var(--spacing-md));
+  }
+  .header-actions { width: 100%; flex-wrap: wrap; justify-content: space-between; }
+  .search-input-wrapper { width: 100%; order: 1; }
+  .icon-button, .btn-donate { order: 2; }
+  
+  /* Section header adjustments */
+  .section-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .section-header > div { width: 100%; display: flex; justify-content: flex-end; }
+  
+  .scrollable-area { padding: 0 var(--spacing-md) var(--spacing-xl); }
 }
 
 /* Provider Card */
@@ -379,13 +403,13 @@ body {
 }
 
 .provider-logo {
-  width: 32px;
-  height: 32px;
-  border-radius: 6px;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: bold;
   flex-shrink: 0;
 }
